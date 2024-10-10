@@ -1,0 +1,69 @@
+﻿<Window x:Class="InventoryOfDevices.Views.Windows.EditDeviceWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Редактировать оборудование" Height="320" Width="700"
+         WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow"
+         AllowsTransparency="False">
+    
+    <Grid Background="#FFEB7F">
+        <Grid.RowDefinitions>
+             <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0" Grid.Row="1">
+            <TextBlock Text="Инвентарный номер" 
+     Style="{StaticResource EditDeviceTextBlockStyle}" Margin="0,10,0,0"/>
+            <TextBox Style="{StaticResource TextBoxStyleEditDevice}"
+                     Text="{Binding SelectedDevice.DeviceId}"/>
+            <TextBlock Text="Название" 
+     Style="{StaticResource EditDeviceTextBlockStyle}"/>
+            <TextBox Style="{StaticResource TextBoxStyleEditDevice}" 
+                     Text="{Binding SelectedDevice.DeviceName}"/>
+            <TextBlock Text="Количество" 
+     Style="{StaticResource EditDeviceTextBlockStyle}"/>
+            <TextBox Style="{StaticResource TextBoxStyleEditDevice}"
+                     Text="{Binding SelectedDevice.Quantity}"/>
+            <TextBlock Text="Местонахождение" 
+     Style="{StaticResource EditDeviceTextBlockStyle}"/>
+            <TextBox Style="{StaticResource TextBoxStyleEditDevice}"
+                     Text="{Binding SelectedDevice.Location}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="1">
+            <TextBlock Text="Фамилия ответственного" 
+     Style="{StaticResource EditDeviceTextBlockStyle}" Margin="0,10,0,0"/>
+            <TextBox Style="{StaticResource TextBoxStyleEditDevice}"
+                     Text="{Binding SelectedDevice.EmployeeName}"/>
+            <TextBlock Text="Имя ответственного" 
+     Style="{StaticResource EditDeviceTextBlockStyle}"/>
+            <TextBox Style="{StaticResource TextBoxStyleEditDevice}"
+                     Text="{Binding SelectedDevice.EmployeeSurname}"/>
+            <TextBlock Text="Производитель" 
+     Style="{StaticResource EditDeviceTextBlockStyle}"/>
+            <TextBox Style="{StaticResource TextBoxStyleEditDevice}"
+                     Text="{Binding SelectedDevice.ManufacturerName}"/>
+            <TextBlock Text="Категория" 
+             Style="{StaticResource EditDeviceTextBlockStyle}"/>
+            <ComboBox Margin="10" Background="White" ItemsSource="{Binding Categories}"
+                      SelectedItem="{Binding SelectedCategory}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="3" Grid.Row="1">
+            <TextBlock Text="Описание" 
+     Style="{StaticResource EditDeviceTextBlockStyle}" Margin="0,10,0,0"/>
+            <TextBox Style="{StaticResource TextBoxStyleEditDescriptionDevice}"
+                     Text="{Binding SelectedDevice.Description}"/>
+            <Button Content="Редактировать" Style="{StaticResource ButtonEditDevice}"
+                    Command="{Binding EditCommand}"/>
+        </StackPanel>
+
+    </Grid>
+</Window>

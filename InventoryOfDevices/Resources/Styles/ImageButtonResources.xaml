@@ -1,0 +1,15 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!--стиль для иконок на кнопки главной панели-->
+    <Style x:Key="IconStyle" TargetType="Image">
+        <Setter Property="Margin" Value="10,5,10,5"/>
+        <Setter Property="Width" Value="43"/>
+     </Style>
+    
+    <!--стиль для иконки кнопки выход-->
+    <Style x:Key="IconStyleForExit" TargetType="Image">
+        <Setter Property="Width" Value="19"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+</ResourceDictionary>

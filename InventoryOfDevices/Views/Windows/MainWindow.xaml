@@ -1,0 +1,239 @@
+﻿<Window x:Class="InventoryOfDevices.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+                Title="Инвентаризация" Height="700" Width="1350" 
+        WindowStartupLocation="CenterScreen" WindowStyle="None"
+        AllowsTransparency="True">
+    
+    <DockPanel Background="#BDBDBD">
+        
+        <Button  DockPanel.Dock="Top" Style="{StaticResource ExitButton}" HorizontalAlignment="Right"
+                 Command="{Binding ExitCommand}">
+        <Button.Content>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <Image Style="{StaticResource IconStyleForExit}"
+          Source="\Resources\Images\Icons\exit.png"/>
+            </StackPanel>
+        </Button.Content>
+        </Button>
+
+        <Grid DockPanel.Dock="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+        </Grid>
+
+        <DockPanel Margin="20, 0, 20, 20">
+            <Border DockPanel.Dock="Left" Background="#92FFC6" Margin="10"
+                CornerRadius="10" MinWidth="250">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Style="{StaticResource MenuTextBlockStyle}" Text="Меню для работы с таблицей" 
+                   HorizontalAlignment="Left"
+                     Margin="15,3,15,3"/>
+
+                    <Grid Grid.Row="1" Margin="0,5,0,10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Button Grid.Row="0" Style="{StaticResource BaseButton}" 
+                                Command="{Binding AddDeviceCommand}">
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Style="{StaticResource IconStyle}"
+                                      Source="\Resources\Images\Icons\add.png"/>
+                                    <TextBlock  Margin="3" 
+                                           Text="Добавить новое оборудование"
+                                                VerticalAlignment="Center"/>
+
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                        <Button Grid.Row="1" Style="{StaticResource BaseButton}"
+                                Command="{Binding EditDeviceCommand}">
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Style="{StaticResource IconStyle}"
+                                       Source="\Resources\Images\Icons\edit.png"/>
+                                    <TextBlock Margin="3" 
+                                           Text="Редактировать"
+                                               VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                        <Button Grid.Row="2" Style="{StaticResource BaseButton}" 
+                                Command="{Binding DeleteDeviceCommand}"
+                                CommandParameter="{Binding SelectedDevice}">
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Style="{StaticResource IconStyle}"
+                                       Source="\Resources\Images\Icons\delete.png"/>
+                                    <TextBlock Margin="3"
+                                           Text="Удалить оборудование"
+                                               VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                        <Button Grid.Row="3" Style="{StaticResource BaseButton}" Command="{Binding ExitCommand}">
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Style="{StaticResource IconStyle}"
+                                       Source="\Resources\Images\Icons\complete.png"/>
+                                    <TextBlock Margin="3"
+                                           Text="Завершить инвентаризацию"
+                                               VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                        <Button Grid.Row="4" Style="{StaticResource BaseButton}" Command="{Binding SearchCommand}">
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Style="{StaticResource IconStyle}"
+                                       Source="\Resources\Images\Icons\search.png"/>
+                                    <TextBlock Margin="3"
+                                           Text="Поиск" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                        <Expander Grid.Row="5" IsExpanded="False" Margin="15,5,5,5" Header="Параметры поиска">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                <Grid Grid.Row="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60*"/>
+                                        <ColumnDefinition Width="40*"/>
+                                    </Grid.ColumnDefinitions>
+                                </Grid>
+                                
+                                <TextBox Grid.Row="0" Text="{Binding DevicesFilterText, UpdateSourceTrigger=PropertyChanged}"  Name="SearchText" HorizontalAlignment="Center"
+                            Style="{StaticResource TextBoxSearchStyle}"/>
+                                
+                                <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,6,0,6" HorizontalAlignment="Left">
+
+                                    <RadioButton Content="Инвентарный номер" FontFamily="Medium" HorizontalAlignment="Left"
+                                    GroupName="SearchCriteria" IsChecked="{Binding IsDeviceIdSelected, Mode=TwoWay}"/>
+
+                                    <RadioButton Content="Название" FontFamily="Medium" HorizontalAlignment="Left" GroupName="SearchCriteria" 
+                                    IsChecked="{Binding IsDeviceNameSelected, Mode=TwoWay}"/>
+
+                                    <RadioButton Content="Категория" FontFamily="Medium" HorizontalAlignment="Left" GroupName="SearchCriteria" 
+                                    IsChecked="{Binding IsCategoryNameSelected, Mode=TwoWay}"/>
+                                    
+                                </StackPanel>
+                                <Button Grid.Row="1" Grid.Column="1" Style="{StaticResource ButtonReset}" Content="Сброс выбора"
+                                       Command="{Binding ResetSelectionCommand}" >
+
+                                </Button>
+                            </Grid>
+                            
+                        </Expander>
+                        <Button Grid.Row="6" Style="{StaticResource BaseButton}"
+                                Command="{Binding GenerateReportDeviceCommand}">
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Style="{StaticResource IconStyle}"
+                                       Source="\Resources\Images\Icons\report.png"/>
+                                    <TextBlock Margin="3"
+                                            Text="Сформировать отчет" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                        <Expander Grid.Row="7" IsExpanded="False" Margin="15,5,5,5" Header="Варианты отчета"
+                                  HorizontalAlignment="Left">
+                            <StackPanel Margin="0,6,0,6">
+                                <RadioButton  GroupName="CheckBoxGroup" Content="По количеству" FontFamily="Medium" 
+                                          HorizontalAlignment="Left" IsChecked="{Binding IsQuantityChecked, Mode=TwoWay}"/>
+
+                                <RadioButton GroupName="CheckBoxGroup" Content="По категориям" 
+                                          FontFamily="Medium" HorizontalAlignment="Left"
+                                          IsChecked="{Binding IsCategoryChecked, Mode=TwoWay}"/>
+
+                                <RadioButton GroupName="CheckBoxGroup" Content="По местонахождению" 
+                                          FontFamily="Medium" HorizontalAlignment="Left" IsChecked="{Binding IsLocationChecked, Mode=TwoWay}"/>
+                                           
+                                          
+                            </StackPanel>
+                        </Expander>
+                    </Grid>
+                </Grid>
+
+            </Border>
+
+            <Border DockPanel.Dock="Right" Background="#92FFC6" Margin="10"
+                CornerRadius="10" MinWidth="250">
+
+                <ListView DockPanel.Dock="Bottom" ItemsSource="{Binding Devices}" Margin="10" BorderThickness="1"
+                         AlternationCount="2" SelectedItem="{Binding SelectedDevice, Mode=TwoWay}">
+                    <ListView.Resources>
+                        
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="FontWeight" Value="Normal"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="#4f7dfe"/>
+                                </Trigger>
+
+                                <!-- триггеры для чередования цветов -->
+                                <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                                    <Setter Property="Background" Value="#D9FEF3"/>
+                                </Trigger>
+                                <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                                    <Setter Property="Background" Value="White"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+
+                    </ListView.Resources>
+
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Инвентарный номер" DisplayMemberBinding="{Binding DeviceId}"/>
+                            <GridViewColumn Header="Название" DisplayMemberBinding="{Binding DeviceName}"/>
+                            <GridViewColumn Header="Количество" DisplayMemberBinding="{Binding Quantity}"/>
+                            <GridViewColumn Header="Местонахождение" DisplayMemberBinding="{Binding Location}"/>
+                            <GridViewColumn Header="Штрих-код" DisplayMemberBinding="{Binding BarcodeValue}"/>
+                            <GridViewColumn Header="Фамилия ответственного" DisplayMemberBinding="{Binding EmployeeSurname}"/>
+                            <GridViewColumn Header="Имя ответственного" DisplayMemberBinding="{Binding EmployeeName}"/>
+                            <GridViewColumn Header="Описание" DisplayMemberBinding="{Binding Description}"/>
+                            <GridViewColumn Header="Категория" DisplayMemberBinding="{Binding CategoryName}"/>
+                            <GridViewColumn Header="Производитель" DisplayMemberBinding="{Binding ManufacturerName}"/>
+                        </GridView>
+                    </ListView.View>
+                   
+                </ListView>
+               
+            </Border>
+
+        </DockPanel>
+
+    </DockPanel>
+
+</Window>

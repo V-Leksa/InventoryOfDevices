@@ -1,0 +1,41 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <!--стиль для текстблока Меню для работы с таблицей-->
+    <Style x:Key="MenuTextBlockStyle" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="Dubai Medium"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="FontSize" Value="20"/>
+    </Style>
+
+    <!--стиль для заголовка Авторизация в окне входа-->
+    <Style x:Key="HeaderOfEnterTextBlockStyle" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="Dubai Medium"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="FontSize" Value="20"/>
+    </Style>
+
+    <!--стиль для заголовков Логин и Пароль в окне входа-->
+    <Style x:Key="EnterTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource HeaderOfEnterTextBlockStyle}">
+        <Setter Property="FontSize" Value="15"/>
+    </Style>
+
+    <!--<Style x:Key="AdditionalTextBlockStyle" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>-->
+
+    <!--стиль для заголовков в окне добавления-->
+    <Style x:Key="AddDeviceTextBlockStyle" TargetType="TextBlock"
+       BasedOn="{StaticResource HeaderOfEnterTextBlockStyle}">
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+    </Style>
+
+    <!--стиль для заголовков в окне редактирования-->
+    <Style x:Key="EditDeviceTextBlockStyle" TargetType="TextBlock"
+       BasedOn="{StaticResource AddDeviceTextBlockStyle}">
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+    </Style>
+</ResourceDictionary>
